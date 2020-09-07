@@ -9,13 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Get Project ID and Name from JIRA
-      id: stars
-      run: echo '::set-output name=response::'`curl --request GET --url 'https://kumar-shahi.atlassian.net/rest/api/3/project/search' --user 'abhishek.shahi@gmail.com:QApj2spS9OhiGpXv1GKuDD93' --header 'Accept:application/json' | jq '.values[0].key'`
-    - run: echo -e ${{ steps.stars.outputs.response }}
-
-    - name: Create JIRA Issue
-      run: curl --request POST --url 'https://kumar-shahi.atlassian.net/rest/api/3/issue' --user 'abhishek.shahi@gmail.com:QApj2spS9OhiGpXv1GKuDD93' --header 'Accept:application/json' --header 'Content-Type:application/json' --data '{"fields":{"project":{"key":"DBDEM"},"summary":"somethings wrong","issuetype":{"name":"Story"}}}'
-
+    - name: Execute Table API
+      run: curl "https://dev65130.service-now.com/api/now/table/problem?sysparm_limit=1" --request GET --header "Accept:application/json" --user 'abhishek.shahi@gmail.com':'Servicenow@pwd123'
       #Use this syntax for hosted servers
       #curl -D- -u abhishek.shahi@gmail.com:Jira@pwd123 -X GET -H "Content-Type: application/json" "https://kumar-shahi.atlassian.net/rest/api/2/search?jql="
