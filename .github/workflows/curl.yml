@@ -14,4 +14,4 @@ jobs:
     - name: Create Issue
       run: curl "https://dev65130.service-now.com/api/now/table/incident" --request POST --header "Accept:application/json" --header "Content-Type:application/json" --data "{'short_description':'Unable to connect to office wifi','assignment_group':'287ebd7da9fe198100f92cc8d1d2154e','urgency':'2','impact':'2'}" --user ${{secrets.SNOWCRED}}
     - name: Get Change Details
-      run: curl "https://dev65130.service-now.com/api/sn_chg_rest/v1/change/standard?sysparm_query=Number=CHG0030001" --request GET --header "Accept:application/json" --user ${{secrets.SNOWCRED}} | jq '.result[0].state'
+      run: curl "https://dev65130.service-now.com/api/sn_chg_rest/v1/change/standard?sysparm_query=Number=CHG0030001" --request GET --header "Accept:application/json" --user ${{secrets.SNOWCRED}} | jq '.result[0].state.display_value'
