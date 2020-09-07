@@ -1,7 +1,7 @@
 on:
   push
 
-name: JIRA Cloud Using Curl
+name: ServiceNow Cloud Using Curl
 
 jobs:
   my-job:
@@ -11,5 +11,5 @@ jobs:
 
     - name: Execute Table API
       run: curl "https://dev65130.service-now.com/api/now/table/problem?sysparm_limit=1" --request GET --header "Accept:application/json" --user 'admin':'123456'
-      #Use this syntax for hosted servers
-      #curl -D- -u abhishek.shahi@gmail.com:Jira@pwd123 -X GET -H "Content-Type: application/json" "https://kumar-shahi.atlassian.net/rest/api/2/search?jql="
+    - name: Create Issue
+      run: curl "https://dev65130.service-now.com/api/now/table/incident" --request POST --header "Accept:application/json" --header "Content-Type:application/json" --data "{'short_description':'Unable to connect to office wifi','assignment_group':'287ebd7da9fe198100f92cc8d1d2154e','urgency':'2','impact':'2'}" --user 'admin':'123456'
