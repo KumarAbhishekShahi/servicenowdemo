@@ -10,6 +10,6 @@ jobs:
     steps:
 
     - name: Execute Table API
-      run: curl "https://dev65130.service-now.com/api/now/table/problem?sysparm_limit=1" --request GET --header "Accept:application/json" --user 'abhishek.shahi@gmail.com':'Servicenow@pwd123'
+      run: curl "https://dev65130.service-now.com/api/now/table/problem?sysparm_limit=1" --request GET --header "Accept:application/json" --user 'abhishek.shahi@gmail.com':'7n8LAHgNozZu'
       #Use this syntax for hosted servers
       #curl -D- -u abhishek.shahi@gmail.com:Jira@pwd123 -X GET -H "Content-Type: application/json" "https://kumar-shahi.atlassian.net/rest/api/2/search?jql="
