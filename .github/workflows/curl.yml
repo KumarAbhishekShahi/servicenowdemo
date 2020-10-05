@@ -10,14 +10,14 @@ jobs:
     steps:
 
     - name: Execute Table API
-      run: curl "https://dev65130.service-now.com/api/now/table/problem?sysparm_limit=1" --request GET --header "Accept:application/json" --user ${{secrets.SNOWCRED}}
+      run: curl "https://dev78290.service-now.com/api/now/table/problem?sysparm_limit=1" --request GET --header "Accept:application/json" --user ${{secrets.SNOWCRED}}
     - name: Create Issue
-      run: curl "https://dev65130.service-now.com/api/now/table/incident" --request POST --header "Accept:application/json" --header "Content-Type:application/json" --data "{'short_description':'Unable to connect to office wifi','assignment_group':'287ebd7da9fe198100f92cc8d1d2154e','urgency':'2','impact':'2'}" --user ${{secrets.SNOWCRED}}
+      run: curl "https://dev78290.service-now.com/api/now/table/incident" --request POST --header "Accept:application/json" --header "Content-Type:application/json" --data "{'short_description':'Unable to connect to office wifi','assignment_group':'287ebd7da9fe198100f92cc8d1d2154e','urgency':'2','impact':'2'}" --user ${{secrets.SNOWCRED}}
     #- name: Get Change Details
       #run: curl "https://dev65130.service-now.com/api/sn_chg_rest/v1/change/standard?sysparm_query=Number=CHG0030001" --request GET --header "Accept:application/json" --user ${{secrets.SNOWCRED}} | jq '.result[0].state.display_value'
     - name: Get Change Details
       id: stars
-      run: echo '::set-output name=response::'`curl "https://dev65130.service-now.com/api/sn_chg_rest/v1/change/standard?sysparm_query=Number=CHG0030002" --request GET --header "Accept:application/json" --user ${{secrets.SNOWCRED}} | jq '.result[0].state.display_value'`
+      run: echo '::set-output name=response::'`curl "https://dev78290.service-now.com/api/sn_chg_rest/v1/change/standard?sysparm_query=Number=CHG0030002" --request GET --header "Accept:application/json" --user ${{secrets.SNOWCRED}} | jq '.result[0].state.display_value'`
     - name: Control to validate change status
       if: ${{ steps.stars.outputs.response != 'Scheduled'}}
       run: echo -e 'Change status is ='${{ steps.stars.outputs.response }}' but required = Approved!'
