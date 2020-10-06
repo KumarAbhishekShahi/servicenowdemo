@@ -19,5 +19,5 @@ jobs:
       id: stars
       run: echo '::set-output name=response::'`curl "https://dev78290.service-now.com/api/now/table/change_request?sysparm_display_value=CHG0000005&sysparm_limit=1" --request GET --header "Accept:application/json" --user ${{secrets.SNOWCRED}} | jq '.result[0].approval'`
     - name: Control to validate change status
-      if: ${{ steps.stars.outputs.response != 'approved'}}
+      if: ${{ steps.stars.outputs.response != '"approved"'}}
       run: echo -e 'Change status is ='${{ steps.stars.outputs.response }}' but required = Approved!'
