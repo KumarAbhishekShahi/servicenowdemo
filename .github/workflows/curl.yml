@@ -17,8 +17,7 @@ jobs:
       #run: curl "https://dev65130.service-now.com/api/sn_chg_rest/v1/change/standard?sysparm_query=Number=CHG0030001" --request GET --header "Accept:application/json" --user ${{secrets.SNOWCRED}} | jq '.result[0].state.display_value'
     - name: Get Change Details
       id: stars
-      run: echo '::set-output name=response::'`curl "https://dev78290.service-now.com/api/now/table/change_request?sysparm_display_value=CHG0000005&sysparm_limit=1" --request GET --header "Accept:application/json" --user ${{secrets.SNOWCRED}} | jq '.result[0].state.display_value'`
+      run: echo '::set-output name=response::'`curl "https://dev78290.service-now.com/api/now/table/change_request?sysparm_display_value=CHG0000005&sysparm_limit=1" --request GET --header "Accept:application/json" --user ${{secrets.SNOWCRED}} | jq '.result[0].approval'`
     - name: Control to validate change status
-      if: ${{ steps.stars.outputs.response != 'Scheduled'}}
-      run: echo ${{ steps.stars.outputs.response }}
-      #run: echo -e 'Change status is ='${{ steps.stars.outputs.response }}' but required = Approved!'
+      if: ${{ steps.stars.outputs.response != 'Approved'}}
+      run: echo -e 'Change status is ='${{ steps.stars.outputs.response }}' but required = Approved!'
